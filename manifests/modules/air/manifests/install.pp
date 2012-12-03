@@ -1,18 +1,17 @@
 class air::install {
   file{'install-air.sh':
-          path => '/home/vagrant/install-air.sh',
+          path => '/root/install-air.sh',
           ensure => present,
           source => 'puppet:///modules/air/install/install-air.sh',
-          owner => vagrant,
-          group => vagrant,
+          owner => root,
           mode  => 744,
           require => Class['air::setup']
   }
 
   exec { 'install-air': 
-    command => "/home/vagrant/install-air.sh",
+    command => "/root/install-air.sh",
     timeout => 0,
     require => File['install-air.sh'],
-    user => vagrant
+    user => root
   }
 }
